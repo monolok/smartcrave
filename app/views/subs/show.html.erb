@@ -1,0 +1,33 @@
+<div class="container-fluid pad-top">
+  <div class="row center">
+    <h3><%= @sub.name %></h3>
+  </div>
+  <div class="row">
+    <div class="col-xs-12 col-sm-5">
+      <div class="row center">
+        <%= image_tag @sub.image.url(:medium), class: "pad-bot1" %>
+      </div>
+      <div class="row center">
+        <strong>Substitute for:</strong>
+          <ul class="ul_show">
+            <% @sub.foods.each do |food| %>
+              <li><%= link_to food.name, food %></li>
+            <%end%>
+          </ul>
+      </div>
+      <div class="row center pad-bot1">
+        <%= link_to root_path do%>
+          <i class="fa fa-arrow-left fa-2x"></i>
+        <%end%> 
+      </div>  
+    </div>
+    <div class="col-xs-12 col-sm-7 pad-bot1 justify">
+      <%= @sub.description %>
+    </div>
+  </div>
+</div>
+
+<% if user_signed_in? and @admin == true %>
+	<%= link_to 'Edit', edit_sub_path(@sub) %> |
+	<%= link_to 'Destroy', @sub, method: :delete, data: { confirm: 'Are you sure?' } %>
+<%end%>

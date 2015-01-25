@@ -1,0 +1,22 @@
+
+<div class="nested-fields">
+  	<div class="field">
+   	 <%= f.label :image %><br>
+   	 <%= f.file_field :image %>
+  	</div>
+	<div class="field">
+		<%= f.label :name %>
+		<%= f.text_field :name %>
+		<%-#f.autocomplete_field :sub_name, autocomplete_sub_name_foods_path -%>
+	</div>
+	<div>
+		<%-#{}"#{@food.name}"-%>
+		<%-#collection_select(:food, :subs, Sub.all, :id, :name)-%>
+		<%-# button_to "Push", action: "push_sub_name" -%>
+	</div>
+	<div class="field">
+		<%= f.label :description %>
+		<%= f.text_area :description %>
+	</div>
+	<%= link_to_remove_association 'remove sub', f %>
+</div>

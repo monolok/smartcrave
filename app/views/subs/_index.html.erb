@@ -1,0 +1,48 @@
+  <%if not params[:search].present?%>
+<!--     <h3>Substitutes:</h3>
+  <%#else%> -->
+    <h3>Latest substitutes</h3>
+  <%end%>
+
+<%if params[:search].present?%>
+  <%if @subs.empty? %>
+    <div class="row">
+      <div class="col-xs-12 brand">
+        <div>
+          <p class="text-danger center">No matching substitutes for <em><%="#{params[:search]}"%></em> have been found</p>
+          <p class="click_me text-success center" data-toggle="modal" data-target=".bs-example-modal-lg">
+              Propose it ?</br><i class="fa fa-plus-square-o fa-2x"></i></p>
+        </div>
+      </div>
+    </div>
+  <%else%>
+  <h3 class="text-success">Found substitutes:</h3>
+    <% @subs.each do |sub| %>
+      <div class="center">
+        <%= link_to sub.name, sub %>
+                <% if user_signed_in? and @admin == true%>
+          <%= link_to "/subs/#{sub.id}/push_sub" do%>
+             <i class="fa fa-plus"></i>
+          <%end%>
+        <%end%>
+      </div>
+    <% end %>
+  <%end%>
+<%else%>
+
+<div class="row">
+  <% @subs.each do |sub| %>
+    <div class="col-xs-6 col-sm-3 center">
+    <%=link_to sub.name, sub%>
+    </div>
+    <% if user_signed_in? and @admin == true%>
+        <div class="col-xs-6 col-sm-9">
+        <%= link_to "/subs/#{sub.id}/push_sub" do%>
+          <i class="fa fa-plus"></i>
+        <%end%>
+        </div>
+    <%end%>
+  <% end %>
+</div>
+
+<%end%>

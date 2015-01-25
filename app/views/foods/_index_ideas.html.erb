@@ -1,0 +1,16 @@
+<%@ideas = Idea.all%>
+<%if @ideas == nil%>
+	<p>There are no ideas</p>
+<%else%>
+	<h2>Ideas submitted by people:</h2>
+	</br>
+	<div>
+		<% @ideas.each do |idea| %>
+			<div class="pad-bot1">
+				<p><%= idea.name%></p> 
+				<p><%= idea.description%></p>
+				<%= link_to 'Destroy', "ideas/#{idea.id}", method: :delete, class: "btn btn-default btn-xs"%>
+			</div>
+		<%end%>
+	</div>
+<%end%>

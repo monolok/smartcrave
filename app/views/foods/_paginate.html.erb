@@ -1,0 +1,9 @@
+<% if Food.count > Sub.count %>
+<div class="center apple_pagination">
+  <%= will_paginate @foods%>
+</div>
+<%else%>
+<div class="center apple_pagination">
+  <%= will_paginate @subs%>
+</div>
+<%end%>

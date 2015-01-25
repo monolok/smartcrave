@@ -1,0 +1,24 @@
+<div class="container-fluid background-image">
+  <%= render "search_index"%>
+</div>
+
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-xs-12 craving">
+      <h3>Latest cravings</h3>
+      <div class="row">
+        <% @foods.each do |food| %>
+          <div class="col-lg-3 col-md-4 col-sm-6 center pad-bot"><%=link_to image_tag(food.image.url(:medium), class: "img-rounded"), food%>
+          </div>
+        <% end %>
+      </div>
+    </div>
+  <%if user_signed_in? %>
+    <div class="col-xs-12 sub">
+      <%= render "subs/index"%>
+    </div>
+  <%end%>
+  </div>
+</div>
+
+<%#render "paginate"%>

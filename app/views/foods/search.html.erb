@@ -1,0 +1,40 @@
+<div class="container-fluid background-image">
+  <%= render "search_index"%>
+</div>
+
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-sm-6 craving">
+        <%if not params[:search].present?%>
+<!--           <h3>Cravings:</h3>
+        <%#else%> -->
+          <h3>Latest Cravings:</h3>
+        <%end%>
+
+        <%if @foods.empty? %>
+            <div class="row">
+              <div class="col-xs-12 brand">
+                <div>
+                  <p class="text-danger center">No matching cravings for <em><%="#{params[:search]}"%></em> have been found</p>
+                  <p class="click_me text-success center" data-toggle="modal" data-target=".bs-example-modal-lg">
+                      Propose it ?</br><i class="fa fa-plus-square-o fa-2x"></i></p>
+                </div>
+              </div>
+            </div>
+          <%else%>
+          <h3 class="text-success">Found cravings:</h3>
+          <% @foods.each do |food| %>
+            <div class="center">
+              <%= link_to food.name, food %>
+            </div>
+          <% end %>
+        <%end%>
+    </div>
+
+    <div class="col-sm-6 sub">
+      <%= render "subs/index"%>
+    </div>
+  </div>
+</div>
+
+<%= render "paginate"%>

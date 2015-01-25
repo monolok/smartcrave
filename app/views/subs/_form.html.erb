@@ -1,0 +1,22 @@
+<%= form_for @sub, :url => {:action => "push_sub_to_food"} do |f| %>
+  <% if @sub.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@sub.errors.count, "error") %> prohibited this sub from being saved:</h2>
+
+      <ul>
+      <% @sub.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+  <h1>What food is <%="#{@sub.name}"%> a substitute of?</h1>
+  <div class="field">
+  <%#select_tag "Food", options_from_collection_for_select(Food.all, "id", "name")%>
+    <%=collection_select(:sub, :foods, Food.all, :id, :name)%>
+  </div>
+
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>
