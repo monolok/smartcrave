@@ -29,6 +29,8 @@ gem 'autoprefixer-rails'
 gem 'devise'
 gem 'searchkick'
 gem 'will_paginate'
+
+gem 'puma'
 # bundle exec rake doc:rails generates the API under doc/api.
 gem 'sdoc', '~> 0.4.0', group: :doc
 
