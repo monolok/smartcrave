@@ -54,10 +54,15 @@ class FoodsController < ApplicationController
     end
     
     @popular_foods = Array.new
-    @counters = @counters.sort {|k, v| k[1]<=>v[1]}.reverse
-    @counters.each do |id, counter|
-      @popular_foods << Food.find(id)
+    if @counters.nil?
+      @counters = nil
+    else
+      @counters = @counters.sort {|k, v| k[1]<=>v[1]}.reverse
+      @counters.each do |id, counter|
+        @popular_foods << Food.find(id)
+      end
     end
+
 #sub
     @counters_sub = Hash.new
     @subs.each do |c|
@@ -65,10 +70,15 @@ class FoodsController < ApplicationController
     end
     
     @popular_subs = Array.new
-    @counters_sub = @counters_sub.sort {|k, v| k[1]<=>v[1]}.reverse
-    @counters_sub.each do |id, counter|
-      @popular_subs << Sub.find(id)
+    if @counters_sub.nil?
+      @counters_sub = nil
+    else
+      @counters_sub = @counters_sub.sort {|k, v| k[1]<=>v[1]}.reverse
+      @counters_sub.each do |id, counter|
+        @popular_subs << Sub.find(id)
+      end     
     end
+
 #results
     @popular_foods = @popular_foods[0...3]
     @popular_subs = @popular_subs[0...3]
