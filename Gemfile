@@ -33,6 +33,7 @@ gem 'will_paginate'
 
 gem 'puma'
 gem 'rails_12factor', group: :production
+gem 'bonsai-elasticsearch-rails', '~> 0.0.4', group: :production
 # bundle exec rake doc:rails generates the API under doc/api.
 gem 'sdoc', '~> 0.4.0', group: :doc
 
