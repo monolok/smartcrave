@@ -1,3 +1,2 @@
-if Rails.env == 'production'
-  ENV['ELASTICSEARCH_URL'] = ENV['BONSAI_URL']
-end
+Elasticsearch::Model.client = Elasticsearch::Client.new url: ENV['BONSAI_URL']
+
