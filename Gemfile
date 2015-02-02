@@ -32,8 +32,6 @@ gem 'searchkick'
 gem 'will_paginate'
 
 gem 'puma'
-gem 'rails_12factor', group: :production
-gem 'bonsai-elasticsearch-rails', '~> 0.0.4', group: :production
 # bundle exec rake doc:rails generates the API under doc/api.
 gem 'sdoc', '~> 0.4.0', group: :doc
 
@@ -55,5 +53,12 @@ group :development, :test do
 
   # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
   gem 'spring'
+end
+
+group :production do
+	gem 'elasticsearch-model'
+	gem 'elasticsearch-rails'
+	gem 'bonsai-elasticsearch-rails'
+	gem 'rails_12factor'
 end
 
