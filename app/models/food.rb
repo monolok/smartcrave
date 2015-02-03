@@ -1,5 +1,5 @@
 class Food < ActiveRecord::Base
-	searchkick
+	#searchkick
 	has_many :joints
 	has_many :subs, :through => :joints
 	accepts_nested_attributes_for :subs, reject_if: :all_blank, allow_destroy: true
