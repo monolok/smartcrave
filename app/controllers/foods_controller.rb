@@ -57,7 +57,7 @@ class FoodsController < ApplicationController
     if @counters.nil?
       @counters = nil
     else
-      @counters = @counters.sort #{|k, v| k[1]<=>v[1]}.reverse
+      @counters = @counters.sort {|k, v| k[1]<=>v[1]}.reverse
       @counters.each do |id, counter|
         @popular_foods << Food.find(id)
       end
@@ -73,7 +73,7 @@ class FoodsController < ApplicationController
     if @counters_sub.nil?
       @counters_sub = nil
     else
-      @counters_sub = @counters_sub.sort #{|k, v| k[1]<=>v[1]}.reverse
+      @counters_sub = @counters_sub.sort {|k, v| k[1]<=>v[1]}.reverse
       @counters_sub.each do |id, counter|
         @popular_subs << Sub.find(id)
       end     
