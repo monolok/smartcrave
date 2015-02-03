@@ -2,7 +2,11 @@ Rails.application.routes.draw do
   
   devise_for :users
   
-  resources :foods
+   resources :foods do
+    collection do
+      get 'search'
+    end
+  end  
   
   resources :subs
   get 'subs/:id/push_sub', to: 'subs#push_sub'

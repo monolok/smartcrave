@@ -6,8 +6,8 @@ class FoodsController < ApplicationController
   # GET /foods.json
   def search
     if params[:search].present?
-     @foods = Food.search(params[:search], fields: [:name])
-     @subs = Sub.search(params[:search], fields: [:name])
+     @foods = Food.search(params[:search]) # fields: [:name])
+     @subs = Sub.search(params[:search]) # fields: [:name])
     else
       redirect_to root_path
     end
@@ -52,14 +52,14 @@ class FoodsController < ApplicationController
     @foods.each do |c|
       @counters[c.id] = c.counter
     end
-    
+
     @popular_foods = Array.new
-    if @counters.nil?
+    if @counters.empty? #add or if @counters.include? nil remove nil record
       @counters = nil
     else
-      @counters = @counters.sort {|k, v| k[1]<=>v[1]}.reverse
+      @counters = @counters.keys.sort {|a, b| @counters[b] <=> @counters[a]}
       @counters.each do |id, counter|
-        @popular_foods << Food.find(id)
+       @popular_foods << Food.find(id)
       end
     end
 
@@ -70,10 +70,10 @@ class FoodsController < ApplicationController
     end
     
     @popular_subs = Array.new
-    if @counters_sub.nil?
+    if @counters_sub.empty? #add or if @counters.include? nil remove nil record
       @counters_sub = nil
     else
-      @counters_sub = @counters_sub.sort {|k, v| k[1]<=>v[1]}.reverse
+      @counters_sub = @counters_sub.keys.sort {|a, b| @counters_sub[b] <=> @counters_sub[a]}
       @counters_sub.each do |id, counter|
         @popular_subs << Sub.find(id)
       end     
