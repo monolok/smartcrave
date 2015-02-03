@@ -56,9 +56,6 @@ group :development, :test do
 end
 
 group :production do
-	gem 'elasticsearch-model'
-	gem 'elasticsearch-rails'
-	gem 'bonsai-elasticsearch-rails'
 	gem 'rails_12factor'
 end
 
