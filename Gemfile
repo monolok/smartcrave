@@ -28,7 +28,6 @@ gem 'font-awesome-rails'
 gem 'paperclip'
 gem 'autoprefixer-rails'
 gem 'devise'
-gem 'searchkick'
 gem 'will_paginate'
 
 gem 'puma'
