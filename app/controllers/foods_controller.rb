@@ -6,8 +6,8 @@ class FoodsController < ApplicationController
   # GET /foods.json
   def search
     if params[:search].present?
-     @foods = Food.search(params[:search]) # fields: [:name])
-     @subs = Sub.search(params[:search]) # fields: [:name])
+     @foods = Food.search(params[:search]).paginate(:page => params[:page], :per_page => 4)
+     @subs = Sub.search(params[:search]).paginate(:page => params[:page], :per_page => 4)
     else
       redirect_to root_path
     end
