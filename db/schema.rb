@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150121211538) do
+ActiveRecord::Schema.define(version: 20150210000518) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -21,11 +21,12 @@ ActiveRecord::Schema.define(version: 20150121211538) do
     t.text     "description"
     t.datetime "created_at",         null: false
     t.datetime "updated_at",         null: false
+    t.integer  "counter"
+    t.integer  "image_id"
     t.string   "image_file_name"
     t.string   "image_content_type"
     t.integer  "image_file_size"
     t.datetime "image_updated_at"
-    t.integer  "counter"
   end
 
   create_table "ideas", force: true do |t|
@@ -33,6 +34,17 @@ ActiveRecord::Schema.define(version: 20150121211538) do
     t.text     "description"
     t.datetime "created_at",  null: false
     t.datetime "updated_at",  null: false
+  end
+
+  create_table "images", force: true do |t|
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.string   "filename"
+    t.string   "mime_type"
+    t.integer  "food_id"
+    t.integer  "sub_id"
+    t.binary   "data"
+    t.string   "name"
   end
 
   create_table "joints", force: true do |t|
@@ -47,11 +59,12 @@ ActiveRecord::Schema.define(version: 20150121211538) do
     t.text     "description"
     t.datetime "created_at",         null: false
     t.datetime "updated_at",         null: false
+    t.integer  "counter"
+    t.integer  "image_id"
     t.string   "image_file_name"
     t.string   "image_content_type"
     t.integer  "image_file_size"
     t.datetime "image_updated_at"
-    t.integer  "counter"
   end
 
   create_table "users", force: true do |t|
