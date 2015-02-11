@@ -25,7 +25,6 @@ gem 'jbuilder', '~> 2.0'
 gem "cocoon"
 gem 'bootstrap-sass'
 gem 'font-awesome-rails'
-gem 'paperclip' #to be removed
 gem 'autoprefixer-rails'
 gem 'devise'
 gem 'will_paginate'
