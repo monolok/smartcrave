@@ -143,7 +143,7 @@ class FoodsController < ApplicationController
   def create
     #@image = Image.create(name: params['food']['image'])
     @food = Food.new(food_params)
-    @food.build_image(params['food']['image'])
+    @food.build_image(params['image'])
     
     respond_to do |format|
       if @food.save

@@ -37,9 +37,11 @@ class SubsController < ApplicationController
 
   def new
     @sub = Sub.new
+    #@sub.build_image
   end
   def create
     @sub = Sub.new(sub_params)
+    @sub.build_image(params['image'])
 
     respond_to do |format|
       if @sub.save
@@ -128,6 +130,6 @@ class SubsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def sub_params
-      params.require(:sub).permit(:name, :description, :image, :counter)
+      params.require(:sub).permit(:name, :description, :counter, images_attributes: [:name])
     end
 end

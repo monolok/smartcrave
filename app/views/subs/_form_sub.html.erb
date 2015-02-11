@@ -10,10 +10,13 @@
     </div>
   <% end %>	
 
- 	<div class="field">
-   	 	<%# f.label :image %><br>
-   	 	<%# f.file_field :image %>
-  	</div>
+  <div class="field">
+    <%= f.fields_for :image do |img|%>
+      <%= img.label :image %><br>
+      <%= img.text_field :name%>
+      <%# img.file_field :image %>
+    <%end%>
+  </div>
 
 	<div class="field">
 		<%= f.label :name %>
