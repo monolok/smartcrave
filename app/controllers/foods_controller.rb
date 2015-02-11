@@ -98,6 +98,7 @@ class FoodsController < ApplicationController
   def new
     @food = Food.new
     @food.subs.build
+    @food.build_image
   end
 
   # def _index_ideas
@@ -140,8 +141,10 @@ class FoodsController < ApplicationController
   # POST /foods
   # POST /foods.json
   def create
+    #@image = Image.create(name: params['food']['image'])
     @food = Food.new(food_params)
-
+    @food.build_image(params['food']['image'])
+    
     respond_to do |format|
       if @food.save
         format.html { redirect_to @food, notice: 'Food was successfully created.' }
@@ -214,10 +217,11 @@ class FoodsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def food_params
-      params.require(:food).permit(:name, :description, :image, :counter, subs_attributes: [:id, :name, :description, :image, :_destroy])
+      params.require(:food).permit(:name, :description, :counter, images_attributes: [:name], subs_attributes: [:id, :name, :description, :image, :_destroy])
     end
 
     def idea_params
       params.require(:idea).permit(:name, :description)
     end
+
 end
