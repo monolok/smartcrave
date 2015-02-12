@@ -5,7 +5,9 @@
   <div class="row">
     <div class="col-xs-12 col-sm-5">
       <div class="row center">
+        <%= image_tag @food.image%>
         <%# image_tag @food.image.url(:medium), class: "pad-bot1 img-rounded"%>
+        <%#image_tag url_for(:controller => "mycontroller", :action => "show_image", :id => @user.id) %>
       </div>
       <div class="row center">
         <strong>Associated Substitutes:</strong>

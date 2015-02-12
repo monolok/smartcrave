@@ -92,8 +92,9 @@ class FoodsController < ApplicationController
     else
       @food.update_attribute(:counter, @food.counter+1)
     end
+    send_data(Base64.decode64(@food.image.data), :type => @food.image.mime_type, :filename => @food.image.filename, :disposition => 'inline')
   end
-
+  #send_data(@photo.data, :type => @photo.mime_type, :filename => "#{@photo.name}.jpg", :disposition => "inline")
   # GET /foods/new
   def new
     @food = Food.new
@@ -143,7 +144,13 @@ class FoodsController < ApplicationController
   def create
     #@image = Image.create(name: params['food']['image'])
     @food = Food.new(food_params)
-    @food.build_image(params['image'])
+    @food.build_image(params['image']) do |t|
+      if params['food']['image']['data']
+        t.data =      Base64.encode64(params['food']['image']['data'].read)
+        t.filename =  params['food']['image']['data'].original_filename
+        t.mime_type = params['food']['image']['data'].content_type
+      end
+    end
     
     respond_to do |format|
       if @food.save
@@ -217,7 +224,7 @@ class FoodsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def food_params
-      params.require(:food).permit(:name, :description, :counter, images_attributes: [:name], subs_attributes: [:id, :name, :description, :image, :_destroy])
+      params.require(:food).permit(:name, :description, :counter, images_attributes: [:name, :data], subs_attributes: [:id, :name, :description, :image, :_destroy])
     end
 
     def idea_params
