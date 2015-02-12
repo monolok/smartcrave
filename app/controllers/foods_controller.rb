@@ -1,7 +1,7 @@
 class FoodsController < ApplicationController
-  before_filter :check_privileges!, except: [:index, :show, :search, :create_idea]
+  before_filter :check_privileges!, except: [:index, :show, :_show_image, :search, :create_idea]
   before_filter :admin_value
-  before_action :set_food, only: [:show, :edit, :update, :destroy]
+  before_action :set_food, only: [:show, :_show_image, :edit, :update, :destroy]
   # GET /foods
   # GET /foods.json
   def search
@@ -92,9 +92,12 @@ class FoodsController < ApplicationController
     else
       @food.update_attribute(:counter, @food.counter+1)
     end
+   #send_data(Base64.decode64(@food.image.data), :type => @food.image.mime_type, :filename => @food.image.filename, :disposition => 'inline')
+  end
+
+  def _show_image
     send_data(Base64.decode64(@food.image.data), :type => @food.image.mime_type, :filename => @food.image.filename, :disposition => 'inline')
   end
-  #send_data(@photo.data, :type => @photo.mime_type, :filename => "#{@photo.name}.jpg", :disposition => "inline")
   # GET /foods/new
   def new
     @food = Food.new

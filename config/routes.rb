@@ -8,6 +8,9 @@ Rails.application.routes.draw do
     end
   end  
   
+  get 'foods/:id/show_image', to: "foods#_show_image"
+
+
   resources :subs
   get 'subs/:id/push_sub', to: 'subs#push_sub'
   get 'subs/:id/push_sub_to_food', to: 'subs#push_sub_to_food'

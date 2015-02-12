@@ -8,10 +8,9 @@
       <h3>Latest cravings</h3>
       <div class="row">
         <% @foods.each do |food| %>
-          <div class="col-lg-3 col-md-4 col-sm-6 center pad-bot"><%#link_to image_tag(food.image.url(:medium), class: "img-rounded"), food%>
-          <%= link_to food.name, food%>
-          <%# image_tag food.image.filename%>
-          <%# image_tag url_for(:controller => "mycontroller", :action => "show_image", :id => @user.id) %>
+          <div class="col-lg-3 col-md-4 col-sm-6 center pad-bot">
+          <%#link_to image_tag(food.image.url(:medium), class: "img-rounded"), food%>
+          <%=link_to image_tag(url_for(:controller => 'foods', :action => '_show_image', :id => food.id), class: "pad-bot1 img-rounded"), food %>   
           </div>
         <% end %>
       </div>
