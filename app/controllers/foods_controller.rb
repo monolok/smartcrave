@@ -48,39 +48,41 @@ class FoodsController < ApplicationController
     @foods = Food.all #.paginate(:page => params[:page], :per_page => 4)
     @subs = Sub.all #.paginate(:page => params[:page], :per_page => 4)
 #food
-    @counters = Hash.new
-    @foods.each do |c|
-      @counters[c.id] = c.counter
-    end
+    # @counters = Hash.new
+    # @foods.each do |c|
+    #   @counters[c.id] = c.counter
+    # end
 
-    @popular_foods = Array.new
-    if @counters.empty? #add or if @counters.include? nil remove nil record
-      @counters = nil
-    else
-      @counters = @counters.keys.sort.reverse  #{|a, b| @counters[b] <=> @counters[a]}
-      @counters.each do |id, counter|
-       @popular_foods << Food.find(id)
-      end
-    end
+    # @popular_foods = Array.new
+    # if @counters.empty? #add or if @counters.include? nil remove nil record
+    #   @counters = nil
+    # else
+    #   @counters = @counters.keys.sort {|a, b| @counters[b] <=> @counters[a]}
+    #   @counters.each do |id, counter|
+    #    @popular_foods << Food.find(id)
+    #   end
+    # end
 
 #sub
-    @counters_sub = Hash.new
-    @subs.each do |c|
-      @counters_sub[c.id] = c.counter
-    end
+    # @counters_sub = Hash.new
+    # @subs.each do |c|
+    #   @counters_sub[c.id] = c.counter
+    # end
     
-    @popular_subs = Array.new
-    if @counters_sub.empty? #add or if @counters.include? nil remove nil record
-      @counters_sub = nil
-    else
-      @counters_sub = @counters_sub.keys.sort.reverse  #{|a, b| @counters_sub[b] <=> @counters_sub[a]}
-      @counters_sub.each do |id, counter|
-        @popular_subs << Sub.find(id)
-      end     
-    end
+    # @popular_subs = Array.new
+    # if @counters_sub.empty? #add or if @counters.include? nil remove nil record
+    #   @counters_sub = nil
+    # else
+    #   @counters_sub = @counters_sub.keys.sort {|a, b| @counters_sub[b] <=> @counters_sub[a]}
+    #   @counters_sub.each do |id, counter|
+    #     @popular_subs << Sub.find(id)
+    #   end     
+    # end
 
 #results
+    @popular_foods = Food.where("counter > 1").order(:counter).reverse_order
     @popular_foods = @popular_foods[0...3]
+    @popular_subs = Sub.where("counter > 1").order(:counter).reverse_order
     @popular_subs = @popular_subs[0...3]
   end
 
