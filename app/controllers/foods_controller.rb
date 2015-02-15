@@ -55,9 +55,9 @@ class FoodsController < ApplicationController
 
     @popular_foods = Array.new
     if @counters.empty? #add or if @counters.include? nil remove nil record
-      @counters = 1
+      @counters = nil
     else
-      @counters = @counters.keys.sort {|a, b| @counters[b] <=> @counters[a]}
+      @counters = @counters.keys.sort.reverse  #{|a, b| @counters[b] <=> @counters[a]}
       @counters.each do |id, counter|
        @popular_foods << Food.find(id)
       end
@@ -71,9 +71,9 @@ class FoodsController < ApplicationController
     
     @popular_subs = Array.new
     if @counters_sub.empty? #add or if @counters.include? nil remove nil record
-      @counters_sub = 1
+      @counters_sub = nil
     else
-      @counters_sub = @counters_sub.keys.sort {|a, b| @counters_sub[b] <=> @counters_sub[a]}
+      @counters_sub = @counters_sub.keys.sort.reverse  #{|a, b| @counters_sub[b] <=> @counters_sub[a]}
       @counters_sub.each do |id, counter|
         @popular_subs << Sub.find(id)
       end     
