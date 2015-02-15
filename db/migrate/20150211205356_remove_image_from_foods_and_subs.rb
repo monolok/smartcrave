@@ -8,7 +8,7 @@ class RemoveImageFromFoodsAndSubs < ActiveRecord::Migration
     remove_column :foods, :image_file_size
     remove_column :subs, :image_updated_at
     remove_column :foods, :image_updated_at
-    remove_column :subs, :image_id
-    remove_column :foods, :image_id              
+    #remove_column :subs, :image_id
+    #remove_column :foods, :image_id              
   end
 end
