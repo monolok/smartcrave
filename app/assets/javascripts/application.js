@@ -22,12 +22,12 @@
 
 //         });
 
-function myPay() {
-    window.open("https://www.paypal.com/fr/cgi-bin/webscr?cmd=_flow&SESSION=NP92apf9PTZxWgaCx1lWKYLmNxR2rM_2vnia3C4P6O7a_9SjwGgZmWbZPZO&dispatch=5885d80a13c0db1f8e263663d3faee8da8649a435e198e44a05ba053bc68d12e", "_blank", "toolbar=no, scrollbars=yes, resizable=yes, top=150, left=400, width=800, height=500");
-}
+// function myPay() {
+//     window.open("https://www.paypal.com/fr/cgi-bin/webscr?cmd=_flow&SESSION=NP92apf9PTZxWgaCx1lWKYLmNxR2rM_2vnia3C4P6O7a_9SjwGgZmWbZPZO&dispatch=5885d80a13c0db1f8e263663d3faee8da8649a435e198e44a05ba053bc68d12e", "_blank", "toolbar=no, scrollbars=yes, resizable=yes, top=150, left=400, width=800, height=500");
+// }
 
 function myFace() {
-    window.open("https://www.facebook.com/sharer/sharer.php?app_id=209034415775655&sdk=joey&u=http%3A%2F%2Fwww.smartcrave.org%2F&display=popup&ref=plugin", "_blank", "toolbar=no, scrollbars=no, resizable=no, top=150, left=400, width=500, height=500");
+    window.open("https://www.facebook.com/sharer/sharer.php?app_id=209034415775655&sdk=joey&u=https%3A%2F%2Fwww.smartcrave.herokuapp.com/%2F&display=popup&ref=plugin", "_blank", "toolbar=no, scrollbars=no, resizable=no, top=150, left=400, width=500, height=500");
 }
 
 // function myTweet() {
