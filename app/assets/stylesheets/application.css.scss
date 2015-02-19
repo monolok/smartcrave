@@ -227,6 +227,10 @@ color: black; }
 .apple_pagination a:hover, .apple_pagination a:focus {
 text-decoration: underline; }
 
+.stripe-button-el {
+	width: inherit;
+}
+
 @media screen and (max-width: 756px) {
     #top-bar{
 	position: absolute;
@@ -246,6 +250,7 @@ h4{
 .form-control{
 	width: 45%;
 }
+
 button{
 	width: 8%;
 }

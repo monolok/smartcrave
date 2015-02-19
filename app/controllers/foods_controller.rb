@@ -1,5 +1,5 @@
 class FoodsController < ApplicationController
-  before_filter :check_privileges!, except: [:index, :show, :_show_image, :search, :create_idea]
+  before_filter :check_privileges!, except: [:index, :show, :_show_image, :search, :create_idea, :new_donation, :create_donation]
   before_filter :admin_value
   before_action :set_food, only: [:show, :_show_image, :edit, :update, :destroy]
   # GET /foods
@@ -191,6 +191,31 @@ class FoodsController < ApplicationController
       format.json { head :no_content }
     end
   end
+
+  def new_donation
+  end
+
+  def create_donation
+    # Amount in cents
+    @amount = 1500
+
+    customer = Stripe::Customer.create(
+    :email => 'example@stripe.com',
+    :card  => params[:stripeToken]
+    )
+
+    charge = Stripe::Charge.create(
+    :customer    => customer.id,
+    :amount      => @amount,
+    :description => 'Smartcrave donation',
+    :currency    => 'usd'
+    )
+
+    rescue Stripe::CardError => e
+    flash[:error] = e.message
+    redirect_to new_donation_path
+  end
+
   private
 
     def check_privileges!

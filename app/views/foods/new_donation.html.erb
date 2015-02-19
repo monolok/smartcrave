@@ -1,0 +1,18 @@
+<div class="brand">
+<%= form_tag new_donation_path do %>
+  <article>
+    <label class="amount">
+      <span>Donate: $15.00</span>
+    </label>
+  </article>
+
+  <script 
+  	src="https://checkout.stripe.com/checkout.js" 
+  	class="stripe-button"
+    data-key="<%= Rails.configuration.stripe[:publishable_key] %>"
+	data-description="Donation"
+    data-amount="1500"
+
+    ></script>
+<% end %>
+</div>

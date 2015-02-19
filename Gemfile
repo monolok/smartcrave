@@ -28,6 +28,7 @@ gem 'font-awesome-rails'
 gem 'autoprefixer-rails'
 gem 'devise'
 gem 'will_paginate'
+gem 'stripe'
 
 gem 'puma'
 # bundle exec rake doc:rails generates the API under doc/api.

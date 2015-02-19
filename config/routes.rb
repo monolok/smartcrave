@@ -10,6 +10,9 @@ Rails.application.routes.draw do
   
   get 'foods/:id/show_image', to: "foods#_show_image"
 
+  get 'new_donation', to: "foods#new_donation"
+  post 'new_donation', to: "foods#create_donation"
+
 
   resources :subs
   get 'subs/:id/push_sub', to: 'subs#push_sub'
