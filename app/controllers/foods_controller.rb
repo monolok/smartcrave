@@ -171,6 +171,13 @@ class FoodsController < ApplicationController
   # PATCH/PUT /foods/1
   # PATCH/PUT /foods/1.json
   def update
+    @food.build_image(params['image']) do |t|
+      if params['food']['image']['data']
+        t.data =      Base64.encode64(params['food']['image']['data'].read)
+        t.filename =  params['food']['image']['data'].original_filename
+        t.mime_type = params['food']['image']['data'].content_type
+      end
+    end    
     respond_to do |format|
       if @food.update(food_params)
         format.html { redirect_to @food, notice: 'Food was successfully updated.' }

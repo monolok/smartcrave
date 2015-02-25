@@ -9,6 +9,7 @@ Rails.application.routes.draw do
   end  
   
   get 'foods/:id/show_image', to: "foods#_show_image"
+  get 'subs/:id/show_image', to: "subs#_show_image"
 
   get 'new_donation', to: "foods#new_donation"
   post 'new_donation', to: "foods#create_donation"

@@ -2,15 +2,20 @@
 <%if @ideas == nil%>
 	<p>There are no ideas</p>
 <%else%>
-	<h2>Ideas submitted by people:</h2>
-	</br>
-	<div>
-		<% @ideas.each do |idea| %>
-			<div class="pad-bot1">
-				<p>Name: <%= idea.name%></p> 
-				<p>Description: <%= idea.description%></p>
-				<%= link_to 'Destroy', "ideas/#{idea.id}", method: :delete, class: "btn btn-default btn-xs"%>
-			</div>
-		<%end%>
+	<div class="container-fluid">
+		<div class="row center">
+			<h2>Ideas submitted by people:</h2>		
+		</div>
+		<div class="row">
+			<% @ideas.each do |idea| %>
+				<div class="col-xs-offset-4 pad-bot1">
+					<p>Name: <%= idea.name%></p> 
+					<p>Description: <%= idea.description%></p>
+					<%= link_to '<i class="fa fa-trash fa-3x"></i>'.html_safe, "ideas/#{idea.id}", method: :delete, class: "btn btn-default btn-xs"%>
+				</div>
+			<%end%>
+		</div>	
 	</div>
 <%end%>
+
+

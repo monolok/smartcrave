@@ -12,28 +12,28 @@
   <% end %>  
   <div class="row">
       <div class="col-xs-offset-4">
-         <%= f.fields_for :image do |img|%>
-            <%= img.label :image %><br>
-            <%= img.text_field :name%>
-            <%# img.file_field :image %>
-          <%end%>
+        <%= f.fields_for :image do |img|%>
+          <%= img.label :image %><br>
+          <%= img.text_field :name, class: "form-control1"%>
+          <%= img.file_field :data %>
+        <%end%>      
       </div>    
   </div>
   <div class="row">
       <div class="col-xs-offset-4">
-        <%= f.label :name %>
-        <%= f.text_field :name %>
+        <%= f.label :name %><br>
+        <%= f.text_field :name, class: "form-control1" %>
       </div>    
   </div>
   <div class="row">
       <div class="col-xs-offset-4">
-        <%= f.label :description %>
-        <%= f.text_area :description %> 
+        <%= f.label :description %><br>
+        <%= f.text_area :description, class: "form-control2" %>
       </div>   
   </div>
   <div class="row">
       <div class="col-xs-offset-4">
-      <%= f.submit %>  
+        <%= f.submit class: "btn btn-success"%>
       </div>  
   </div>
 <% end %>  

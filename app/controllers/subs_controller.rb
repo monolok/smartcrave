@@ -1,7 +1,7 @@
 class SubsController < ApplicationController
-  before_filter :check_privileges!, except: [:index, :show]
+  before_filter :check_privileges!, except: [:index, :show, :_show_image]
   before_filter :admin_value
-  before_action :set_sub, only: [:show, :edit, :update, :push_sub, :push_sub_to_food, :destroy]
+  before_action :set_sub, only: [:show, :edit, :update, :push_sub, :push_sub_to_food, :destroy, :_show_image]
 
   # GET /subs
   # GET /subs.json
@@ -17,6 +17,10 @@ class SubsController < ApplicationController
     else
       @sub.update_attribute(:counter, @sub.counter+1)
     end
+  end
+
+  def _show_image
+    send_data(Base64.decode64(@sub.image.data), :type => @sub.image.mime_type, :filename => @sub.image.filename, :disposition => 'inline')
   end
 
   # GET /subs/1/edit
@@ -41,7 +45,13 @@ class SubsController < ApplicationController
   end
   def create
     @sub = Sub.new(sub_params)
-    @sub.build_image(params['image'])
+    @sub.build_image(params['image']) do |t|
+      if params['sub']['image']['data']
+        t.data =      Base64.encode64(params['sub']['image']['data'].read)
+        t.filename =  params['sub']['image']['data'].original_filename
+        t.mime_type = params['sub']['image']['data'].content_type
+      end
+    end
 
     respond_to do |format|
       if @sub.save
@@ -60,6 +70,13 @@ class SubsController < ApplicationController
   # PATCH/PUT /foods/1
   # PATCH/PUT /foods/1.json
   def update
+   @sub.build_image(params['image']) do |t|
+      if params['sub']['image']['data']
+        t.data =      Base64.encode64(params['sub']['image']['data'].read)
+        t.filename =  params['sub']['image']['data'].original_filename
+        t.mime_type = params['sub']['image']['data'].content_type
+      end
+    end    
     respond_to do |format|
       if @sub.update(sub_params)
         format.html { redirect_to @sub, notice: 'Sub was successfully updated.' }
@@ -130,6 +147,6 @@ class SubsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def sub_params
-      params.require(:sub).permit(:name, :description, :counter, images_attributes: [:name])
+      params.require(:sub).permit(:name, :description, :counter, images_attributes: [:name, :data])
     end
 end

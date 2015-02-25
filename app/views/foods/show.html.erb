@@ -1,36 +1,36 @@
 <div class="container-fluid pad-top">
   <div class="row center">
-    <h3><%= @food.name %></h3>
+    <h2 class="text-success pad-bot2"><%= @food.name %></h2>
   </div>
   <div class="row">
     <div class="col-xs-12 col-sm-5">
       <div class="row center">
         <%# image_tag @food.image.url(:medium), class: "pad-bot1 img-rounded"%>
-        <%=image_tag(url_for(:controller => 'foods', :action => '_show_image'), class: "pad-bot1 img-rounded") %>
+        <%=image_tag(url_for(:controller => 'foods', :action => '_show_image'), class: "pad-bot1 img-circle") %>
         <%# render "show_image"%>
       </div>
       <div class="row center">
+        <%= link_to root_path do%>
+          <i class="fa fa-arrow-left fa-2x"></i>
+        <%end%>
+        <% if user_signed_in? and @admin == true %>
+          | <%= link_to '<i class="fa fa-pencil-square-o fa-2x"></i>'.html_safe, edit_food_path(@food)%> |
+          <%= link_to '<i class="fa fa-trash fa-2x"></i>'.html_safe, @food, method: :delete, data: { confirm: 'Are you sure?' } %>
+        <%end%>         
+      </div>       
+      <div class="row center brand">
         <strong>Associated Substitutes:</strong>
           <ul class="ul_show">
             <% @food.subs.each do |sub| %>
-             <li><%= link_to sub.name, sub %></li>
+             <li><%= link_to sub.name, sub, class: "text-success" %></li>
             <% end %>
           </ul>
-      </div>
-      <div class="row center pad-bot1">
-        <%= link_to root_path do%>
-          <i class="fa fa-arrow-left fa-2x"></i>
-        <%end%> 
-      </div>  
+      </div> 
     </div>
-    <div class="col-xs-12 col-sm-7 pad-bot1 justify">
+    <div class="col-xs-12 col-sm-7 pad-bot1 justify lead">
       <%= @food.description %>
     </div>
   </div>
 </div>
 
 
-<% if user_signed_in? and @admin == true %>
-	<%= link_to 'Edit', edit_food_path(@food) %> |
-	<%= link_to 'Destroy', @food, method: :delete, data: { confirm: 'Are you sure?' } %>
-<%end%> 

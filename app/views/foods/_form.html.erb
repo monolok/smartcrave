@@ -33,14 +33,16 @@
       <%= f.text_area :description, class: "form-control2" %>
     </div>    
   </div>
+
   <div class="row">
     <%= f.fields_for :subs do |sub| %>
       <%= render 'sub_fields', :f => sub %>
-      <div class="col-xs-offset-4">
-        <%= link_to_add_association 'Add sub', f, :subs %>
+      <div class="col-xs-offset-4 btn btn-default">
+      <%= link_to_add_association 'Add sub', f, :subs %>
       </div>                
     <% end %>    
   </div>
+
   <div class="row">
     <div class="col-xs-offset-4">
       <%= f.submit class: "btn btn-success"%>
