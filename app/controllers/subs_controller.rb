@@ -105,6 +105,11 @@ class SubsController < ApplicationController
   # DELETE /subs/1.json
   def destroy
     @sub.destroy
+    @sub.image.destroy
+    @j = Joint.where(sub_id: @sub.id)
+    if @j == true
+      @j.destroy_all
+    end    
     respond_to do |format|
       format.html { redirect_to subs_url, notice: 'Sub was successfully destroyed.' }
       format.json { head :no_content }

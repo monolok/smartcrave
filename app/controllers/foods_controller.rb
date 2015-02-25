@@ -193,6 +193,11 @@ class FoodsController < ApplicationController
   # DELETE /foods/1.json
   def destroy
     @food.destroy
+    @food.image.destroy
+    @j = Joint.where(food_id: @food.id)
+    if @j == true
+      @j.destroy_all
+    end
     respond_to do |format|
       format.html { redirect_to foods_url, notice: 'Food was successfully destroyed.' }
       format.json { head :no_content }
