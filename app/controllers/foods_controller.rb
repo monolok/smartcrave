@@ -6,8 +6,8 @@ class FoodsController < ApplicationController
   # GET /foods.json
   def search
     if params[:search].present?
-     @foods = Food.search(params[:search]).paginate(:page => params[:page], :per_page => 4)
-     @subs = Sub.search(params[:search]).paginate(:page => params[:page], :per_page => 4)
+     @foods = Food.search(params[:search].capitalize).paginate(:page => params[:page], :per_page => 4)
+     @subs = Sub.search(params[:search].capitalize).paginate(:page => params[:page], :per_page => 4)
     else
       redirect_to root_path
     end
@@ -156,7 +156,7 @@ class FoodsController < ApplicationController
         t.mime_type = params['food']['image']['data'].content_type
       end
     end
-    
+    @food.name = @food.name.capitalize
     respond_to do |format|
       if @food.save
         format.html { redirect_to @food, notice: 'Food was successfully created.' }
@@ -178,6 +178,7 @@ class FoodsController < ApplicationController
         t.mime_type = params['food']['image']['data'].content_type
       end
     end    
+    @food.name = @food.name.capitalize
     respond_to do |format|
       if @food.update(food_params)
         format.html { redirect_to @food, notice: 'Food was successfully updated.' }

@@ -52,7 +52,7 @@ class SubsController < ApplicationController
         t.mime_type = params['sub']['image']['data'].content_type
       end
     end
-
+    @sub.name = @sub.name.capitalize
     respond_to do |format|
       if @sub.save
         format.html { redirect_to @sub, notice: 'Sub was successfully created.' }
@@ -77,6 +77,7 @@ class SubsController < ApplicationController
         t.mime_type = params['sub']['image']['data'].content_type
       end
     end    
+    @sub.name = @sub.name.capitalize
     respond_to do |format|
       if @sub.update(sub_params)
         format.html { redirect_to @sub, notice: 'Sub was successfully updated.' }
