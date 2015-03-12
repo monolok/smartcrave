@@ -245,6 +245,47 @@ text-decoration: underline; }
 	margin: 130px;
 	border-radius: 10%;
 }
+/*NAV BOTTOM*/
+footer {
+clear: both;
+width: 100%;
+padding: 1rem 0px;
+border-top: 1px solid #E9E9E9;
+position: absolute;
+right: 0px;
+left: 0px;
+z-index: 1030;
+}
+.wide_wrapper {
+width: 95%;
+margin: 0px auto;
+max-width: 1440px;
+}
+footer #logo {
+width: 40px;
+display: inline-flex;
+float: left;
+}
+.navigation {
+float: right;
+padding: 0rem 2.5% 0px 0px;
+}
+footer .navigation {
+float: right;
+font-family: "brandon-grotesque",sans-serif;
+font-weight: 700;
+color: #4C5650;
+}
+footer .navigation a {
+color: #4C5650;
+margin-left: 1.5rem;
+line-height: 1;
+display: inline-block;
+}
+.pad-left-footer {
+padding-left: 18%;
+}
+
 @media screen and (max-width: 756px) {
     #top-bar{
 	position: absolute;
