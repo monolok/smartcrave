@@ -1,0 +1,21 @@
+<div class="container-fluid brand donate-design">
+    <div class="row center">
+       <h3>How much do you wish to donate ?</h3>
+       <small>Only write round numbers</small>
+    </div>
+    <div class="row center">
+
+		<%= form_tag donation_path, method: :get, class: "row center brand", role: "search" do %>
+		<%= number_field_tag :amount, params[:amount], class: "block form-control" %>
+		<button>
+			<i class="fa fa-usd"></i>
+		</button>
+		<% end %>
+     
+    </div>
+  <div class="row center pad-bot2">
+    <%= link_to root_path do%>
+      <i class="fa fa-arrow-left fa-2x"></i>
+    <%end%>
+  </div>     
+</div>

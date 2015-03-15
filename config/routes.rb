@@ -23,7 +23,7 @@ Rails.application.routes.draw do
 
   post 'ideas', to: 'foods#create_idea'
   delete 'ideas/:id', to: 'foods#destroy_idea'
-
+  get 'donation', to: 'foods#custom_donation'
 
   root "foods#index"
   # The priority is based upon order of creation: first created -> highest priority.

@@ -1,15 +1,16 @@
 <div class="container-fluid brand donate-design">
   <%= form_tag new_donation_path do %>
     <div class="row center">
-       <h3>Donate: $15.00</h3>
+       <h3>Donate <%= @amount.to_i/100%> $</h3>
     </div>
     <div class="row center">
+
       <script 
         src="https://checkout.stripe.com/checkout.js" 
         class="stripe-button"
         data-key="<%= Rails.configuration.stripe[:publishable_key] %>"
       data-description="Donation"
-        data-amount="1500"
+        data-amount= "<%= @amount%>"
 
         ></script>
     </div>

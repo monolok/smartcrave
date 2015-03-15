@@ -1,5 +1,5 @@
 class FoodsController < ApplicationController
-  before_filter :check_privileges!, except: [:index, :show, :_show_image, :search, :create_idea, :new_donation, :create_donation]
+  before_filter :check_privileges!, except: [:index, :show, :_show_image, :search, :create_idea, :new_donation, :create_donation, :custom_donation]
   before_filter :admin_value
   before_action :set_food, only: [:show, :_show_image, :edit, :update, :destroy]
   # GET /foods
@@ -206,11 +206,23 @@ class FoodsController < ApplicationController
   end
 
   def new_donation
+    @amount = flash[:amount]
+    @amount = @amount+"00"
+    flash.keep(:amount)
+  end
+
+  def custom_donation
+    if not params[:amount].nil?
+      flash[:amount] = params[:amount]
+      flash.keep(:amount)
+      redirect_to new_donation_path
+    end
   end
 
   def create_donation
     # Amount in cents
-    @amount = 1500
+    @amount = flash[:amount]
+    @amount = @amount+"00"
 
     customer = Stripe::Customer.create(
     :email => 'example@stripe.com',
